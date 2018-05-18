@@ -1,0 +1,24 @@
+<ui:composition template="/WEB-INF/templates/basic.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+>
+	<ui:define name="content">
+		<h:form>
+			<h:inputTextarea value="#{messages.message.text}" />
+			<h:commandButton value="Save" action="#{messages.save}">
+				<f:ajax execute="@form" render="messages" />
+			</h:commandButton>
+		</h:form>
+
+		<h:panelGroup id="messages" layout="block">
+			<ui:repeat value="#{messages.list}" var="message">
+				<div id="message_#{message.id}" class="message">
+					<h:outputText value="#{message.html}" escape="false" />
+				</div>	
+			</ui:repeat>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

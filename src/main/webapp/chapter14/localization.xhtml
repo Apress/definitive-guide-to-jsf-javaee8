@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="#{activeLocale.languageTag}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+	<f:view locale="#{activeLocale.current}">
+		<h:head>
+			<title>#{text['title']}</title>
+		</h:head>
+		<h:body>
+			<header>
+				<nav>
+					<h:link outcome="/index">Back to index</h:link>
+				</nav>
+			</header>
+			<main>
+				<h1>#{text['heading']}</h1>
+				<p>#{text['paragraph']}</p>
+				<h:form>
+					<h:selectOneMenu value="#{activeLocale.languageTag}">
+						<f:selectItems value="#{activeLocale.available}" var="l"
+							itemValue="#{l.toLanguageTag()}"
+							itemLabel="#{l.getDisplayLanguage(l)}">
+						</f:selectItems>
+						<f:ajax listener="#{activeLocale.reload()}" />
+					</h:selectOneMenu>
+				</h:form>
+			</main>
+		</h:body>
+	</f:view>
+</html>

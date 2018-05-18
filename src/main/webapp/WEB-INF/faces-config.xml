@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+	version="2.3"
+>
+	<application>
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>pt_BR</supported-locale>
+			<supported-locale>hi</supported-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>com.example.project.view.i18n.text</base-name>
+			<var>text</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>com.example.project.view.i18n.DatabaseResourceBundle</base-name>
+			<var>i18n</var>
+		</resource-bundle>
+		<message-bundle>com.example.project.view.i18n.messages</message-bundle>
+		
+		<resource-handler>com.example.project.view.resourcehandler.VersionResourceHandler</resource-handler>
+		<search-keyword-resolver>com.example.project.view.search.MessagesKeywordResolver</search-keyword-resolver>
+		
+ 		<system-event-listener>
+			<system-event-listener-class>com.example.project.view.listener.DynamicResourceListener</system-event-listener-class>
+			<system-event-class>javax.faces.event.PostAddToViewEvent</system-event-class>
+			<source-class>javax.faces.component.UIOutput</source-class>
+		</system-event-listener>
+	</application>
+
+	<lifecycle>
+		<phase-listener>com.example.project.view.listener.PreInvokeApplicationListener</phase-listener>
+	</lifecycle>
+
+	<factory>
+		<exception-handler-factory>com.example.project.view.exceptionhandler.AjaxExceptionHandler$Factory</exception-handler-factory>
+		<exception-handler-factory>com.example.project.view.exceptionhandler.BusinessExceptionHandler$Factory</exception-handler-factory>
+	</factory>
+
+	<render-kit>
+	    <renderer>
+	        <component-family>javax.faces.Message</component-family>
+	        <renderer-type>javax.faces.Message</renderer-type>
+	        <renderer-class>com.example.project.view.renderer.EscapableMessageRenderer</renderer-class>
+	    </renderer>
+	</render-kit>
+</faces-config>

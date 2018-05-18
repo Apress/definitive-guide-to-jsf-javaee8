@@ -1,0 +1,14 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+	<div class="button" jsf:rendered="#{rendered ne false}">
+		<h:commandButton id="#{id}" value="#{label}">
+			<f:actionListener binding="#{action}" />
+			<f:ajax execute="@form" render="@form" />
+		</h:commandButton>
+		<h:messages id="#{id}_m" globalOnly="true" redisplay="false" />
+	</div>
+</ui:composition>

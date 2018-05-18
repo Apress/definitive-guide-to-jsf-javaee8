@@ -1,0 +1,26 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+>
+	<cc:interface componentType="inputLocalTime">
+		<cc:attribute name="value" type="java.time.LocalTime" shortDescription="Selected time. Defaults to 00:00." />
+		<cc:attribute name="required" type="boolean" shortDescription="Required state. Defaults to false." />
+		<cc:clientBehavior name="change" default="true" targets="hour minute" event="change" />
+	</cc:interface>
+
+	<cc:implementation>
+		<span id="#{cc.clientId}" class="inputLocalTime">
+			<h:selectOneMenu id="hour" binding="#{cc.hour}" required="#{cc.attrs.required}">
+				<f:selectItem itemValue="#{null}" />
+				<f:selectItems value="#{cc.hours}" />
+			</h:selectOneMenu>
+			:
+			<h:selectOneMenu id="minute" binding="#{cc.minute}" required="#{cc.attrs.required}">
+				<f:selectItem itemValue="#{null}" />
+				<f:selectItems value="#{cc.minutes}" />
+			</h:selectOneMenu>
+		</span>
+	</cc:implementation>
+</ui:component>

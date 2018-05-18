@@ -1,0 +1,17 @@
+<ui:composition template="/WEB-INF/templates/basic.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+	<ui:define name="content">
+		<h:outputScript name="scripts/longRunningProcess.js" target="head" />
+		<h:form>
+		    <h:commandButton value="submit" onclick="startLongRunningProcess()" action="#{longRunningProcess.submit}">
+		        <f:ajax />
+		    </h:commandButton>
+		</h:form>
+		<div id="status" />
+		<f:websocket id="push" channel="push" scope="view" connected="false" onmessage="endLongRunningProcess" />
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="#{activeLocale.languageTag}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+>
+	<c:set var="page" value="page#{fn:replace(fn:split(view.viewId, '.')[0], '/', '_')}" scope="view" />
+
+	<f:view locale="#{activeLocale.current}">
+		<h:head>
+			<title>#{text[page += '.title']}</title>
+			<meta name="description" content="#{text[page += '.meta.description']}" />
+		</h:head>
+		<h:body id="#{page}">
+			<header>
+				<nav>
+					<ul>
+						<li><h:link outcome="/index" value="#{text['label.home']}" /></li>
+						<c:if test="#{empty request.userPrincipal}">
+							<li><h:link outcome="/login" value="#{text['label.login']}" /></li>
+							<li><h:link outcome="/signup" value="#{text['label.signup']}" /></li>
+						</c:if>
+						<c:if test="#{not empty request.userPrincipal}">
+							<li>#{request.userPrincipal.user.email}</li>
+							<li><h:form><h:commandLink action="#{logout.submit}" value="#{text['label.logout']}" /></h:form></li>
+						</c:if>
+					</ul>
+				</nav>
+				<h:form>
+					<h:selectOneMenu value="#{activeLocale.languageTag}">
+						<f:selectItems value="#{activeLocale.available}" var="l"
+							itemValue="#{l.toLanguageTag()}"
+							itemLabel="#{l.getDisplayLanguage(l)}">
+						</f:selectItems>
+						<f:ajax listener="#{activeLocale.reload()}" />
+					</h:selectOneMenu>
+				</h:form>
+			</header>
+			<main>
+				<h1>#{text[page += '.title']}</h1>
+				<ui:insert name="content" />
+			</main>
+			<footer>© #{text['page_home.title']}</footer>
+		</h:body>
+	</f:view>
+</html>

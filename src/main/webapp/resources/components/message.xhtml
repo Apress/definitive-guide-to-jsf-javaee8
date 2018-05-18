@@ -1,0 +1,29 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:t="http://example.com/tags"
+>
+	<cc:interface componentType="messageComposite">
+		<cc:attribute name="value" type="com.example.project.model.Message" />
+	</cc:interface>
+
+	<cc:implementation>
+		<p id="#{cc.clientId}">
+			Message ID: #{cc.message.id}<br/>
+			Message text: #{cc.message.text}<br/>
+			Replies: #{cc.message.replies.size()}<br/>
+			<c:if test="#{not empty cc.message.replies}">
+				<ul>
+					<c:forEach items="#{cc.message.replies}" var="message" varStatus="loop">
+						<li>
+							<t:message value="#{cc.parent.message.replies[loop.index]}" />
+						</li>
+					</c:forEach>
+				</ul>
+			</c:if>
+		</p>
+	</cc:implementation>
+</ui:component>

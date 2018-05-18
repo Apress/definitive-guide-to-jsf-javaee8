@@ -1,0 +1,38 @@
+<ui:composition template="/WEB-INF/templates/basic.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+>
+	<ui:define name="content">
+		<h2>Oops!</h2>
+		<p>
+			Unfortunately, an unexpected problem has occurred during processing of your request.
+			This is not your fault, <strong>this is our fault</strong>.
+			We have been notified about this and we will try to investigate and fix it.
+		</p>
+		<p>
+			You can try going back to <a href="#{requestScope['javax.servlet.error.request_uri']}">the same page</a>,
+			or you can restart at <h:link outcome="/index">the home page</h:link>.
+		</p>
+
+		<h3>Error Detail</h3>
+		<dl>
+		    <dt>Request URI</dt>
+		    <dd>#{requestScope['javax.servlet.error.request_uri']}</dd>
+		    <dt>Exception type</dt>
+		    <dd>#{requestScope['javax.servlet.error.exception']['class']}</dd>
+		    <dt>Exception message</dt>
+		    <dd>#{requestScope['javax.servlet.error.exception'].message}</dd>
+		    <dt>Stack trace</dt>
+		    <dd><pre>#{
+		        facesContext.externalContext.response.writer.flush()
+		     }#{
+		        requestScope['javax.servlet.error.exception'].printStackTrace
+		            (facesContext.externalContext.response.writer)
+		     }</pre></dd>
+		</dl>
+	</ui:define>
+</ui:composition>

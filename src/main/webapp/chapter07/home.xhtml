@@ -1,0 +1,20 @@
+<ui:composition template="/WEB-INF/templates/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+	<ui:param name="title" value="Welcome!" />
+
+	<ui:define name="head">
+		<h1>Welcome to Example Company!</h1>
+	</ui:define>
+
+	<ui:define name="content">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		<p>Proin quis fringilla est, eget elementum tellus.</p>
+		<p>Aenean imperdiet tellus id vestibulum aliquam.</p>
+		<nav>
+			<h:link outcome="/index" value="Back to index" />
+		</nav>
+	</ui:define>
+</ui:composition>

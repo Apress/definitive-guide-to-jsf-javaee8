@@ -1,0 +1,25 @@
+<ui:composition template="/WEB-INF/templates/basic.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+	<ui:define name="content">
+		<h:form>
+		    <f:websocket channel="push" scope="view">
+		        <f:ajax event="loaded" render=":results" />
+		    </f:websocket>
+		</h:form>
+		<h:panelGroup id="results" layout="block">
+		    <h:graphicImage name="images/loading.gif"
+		        rendered="#{empty longRunningSearch.results}">
+		    </h:graphicImage>
+		    <h:dataTable value="#{longRunningSearch.results}" var="result"
+		        rendered="#{not empty longRunningSearch.results}">
+		        <h:column>#{result.id}</h:column>
+		        <h:column>#{result.name}</h:column>
+		        <h:column>#{result.value}</h:column>
+		    </h:dataTable>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

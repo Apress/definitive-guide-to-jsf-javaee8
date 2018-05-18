@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facelet-taglib xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_3.xsd"
+	version="2.3"
+>
+	<namespace>http://example.com/tags</namespace>
+	<short-name>t</short-name>
+	<composite-library-name>components</composite-library-name>
+
+	<tag>
+		<description>Renders label + input + message field.</description>
+		<tag-name>field</tag-name>
+		<source>tags/field.xhtml</source>
+		<attribute>
+			<description>The type of the input component.</description>
+			<name>type</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>The ID of the input component.</description>
+			<name>id</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>The label of the input component.</description>
+			<name>label</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>The value of the input component.</description>
+			<name>value</name>
+			<required>false</required>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description>Whether the field is rendered.</description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<description>Renders button.</description>
+		<tag-name>button</tag-name>
+		<source>tags/button.xhtml</source>
+		<attribute>
+			<description>The ID of the button component.</description>
+			<name>id</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>The label of the input component.</description>
+			<name>label</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Action method of the button. NOTE: must include method parenthesis.</description>
+			<name>action</name>
+			<required>true</required>
+			<method-signature>void action()</method-signature>
+		</attribute>
+		<attribute>
+			<description>Whether the button is rendered.</description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+	</tag>
+
+	<tag>
+		<description>Renders a HTML list.</description>
+		<tag-name>dataList</tag-name>
+		<component>
+			<component-type>project.DataList</component-type>
+		</component>
+	</tag>
+
+	<tag>
+		<description>Extends h:inputFile with new "accept" attribute.</description>
+		<tag-name>inputFile</tag-name>
+		<component>
+			<component-type>project.InputFile</component-type>
+		</component>
+	</tag>
+
+	<tag>
+		<tag-name>viewParamValidationFailed</tag-name>
+		<handler-class>com.example.project.view.taghandler.ViewParamValidationFailed</handler-class>
+	</tag>
+	
+	<tag>
+		<tag-name>convertLocalDate</tag-name>
+		<converter>
+			<converter-id>project.ConvertLocalDate</converter-id>
+		</converter>
+	</tag>
+</facelet-taglib>

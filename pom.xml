@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+	<prerequisites>
+		<maven>3.0.0</maven>
+	</prerequisites>
+
+	<groupId>com.example.project</groupId>
+	<artifactId>definitive-guide-to-jsf-in-javaee8</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>The Definitive Guide to JSF in Java EE 8</name>
+	<url>https://github.com/omnifaces/definitive-guide-to-jsf-in-javaee8</url>
+
+	<scm>
+		<url>https://github.com/omnifaces/definitive-guide-to-jsf-in-javaee8</url>
+		<connection>scm:git:git@github.com:omnifaces/definitive-guide-to-jsf-in-javaee8.git</connection>
+		<developerConnection>scm:git:git@github.com:omnifaces/definitive-guide-to-jsf-in-javaee8.git</developerConnection>
+	</scm>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+
+		<!-- Server specific dependencies (we target Payara 5 Alpha 3 as of now). -->
+		<!-- Versions must exactly match the server-provided ones! -->
+		<!-- For correct API sources in Eclipse debugger, those need to be declared BEFORE javaee-api! -->
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+			<version>2.3.3</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Target Java EE 8 server. -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- Project dependencies. -->
+		<dependency>
+			<groupId>com.atlassian.commonmark</groupId>
+			<artifactId>commonmark</artifactId>
+			<version>0.10.0</version>
+		</dependency>
+		<dependency> <!-- NOTE: this dependency must be removed when you target a server which already bundles Hibernate, such as WildFly. -->
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>5.2.12.Final</version>
+		</dependency>
+		<dependency> <!-- NOTE: this dependency should not be necessary when you target a server which already bundles H2, such as WildFly. -->
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.196</version>
+		</dependency>
+	</dependencies>
+</project>

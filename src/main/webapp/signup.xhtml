@@ -1,0 +1,19 @@
+<ui:composition template="/WEB-INF/templates/page.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+	<ui:define name="content">
+		<h:form id="signup">
+			<fieldset>
+				<h:outputLabel for="email" value="#{text['label.email']}" />
+				<h:inputText id="email" required="true" value="#{signup.email}" />
+				<h:message for="email" styleClass="message" />
+
+				<h:commandButton id="submit" action="#{signup.submit}" value="#{text['label.signup']}" />
+				<h:message for="signup" styleClass="message" />
+			</fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

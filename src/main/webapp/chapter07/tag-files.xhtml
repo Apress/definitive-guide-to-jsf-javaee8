@@ -1,0 +1,22 @@
+<ui:composition template="/WEB-INF/templates/basic.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:t="http://example.com/tags"
+>
+	<ui:define name="content">
+        <h:form id="login">
+            <fieldset>
+                <header>
+                    <h1>Log In</h1>
+                </header>
+                <t:field type="email" id="email" label="Email" value="#{login.email}" />
+                <t:field type="password" id="password" label="Password" value="#{login.password}" />
+                <footer>
+                    <t:button id="submit" label="Log In" action="#{login.submit()}" />
+                </footer>
+            </fieldset>
+        </h:form>
+	</ui:define>
+</ui:composition>

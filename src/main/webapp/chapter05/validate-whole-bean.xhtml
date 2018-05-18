@@ -1,0 +1,23 @@
+<ui:composition template="/WEB-INF/templates/basic.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+>
+	<ui:define name="content">
+		<h:form>
+			<h:inputText a:type="date" value="#{booking.period.startDate}">
+				<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+			</h:inputText>
+			<h:inputText a:type="date" value="#{booking.period.endDate}">
+				<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+			</h:inputText>
+			<h:commandButton value="Submit" action="#{booking.submit}" />
+			<h:messages />
+
+			<f:validateWholeBean value="#{booking.period}" 
+				rendered="#{facesContext.currentPhaseId.ordinal ne 4}" /> <!-- Work around for Mojarra 2.3.0 - 2.3.3 -->
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,29 @@
+<ui:composition template="/WEB-INF/templates/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+	<ui:param name="title" value="Single Page Application" />
+
+	<ui:define name="content">
+		<h:outputScript target="head" name="scripts/spa.js" />
+		<aside>
+			<nav>
+				<h:form>
+					<f:ajax onevent="pageChangeListener" render=":content">
+						<ul>
+							<li><h:commandLink value="page1" action="#{spa.set('page1')}" /></li>
+							<li><h:commandLink value="page2" action="#{spa.set('page2')}" /></li>
+							<li><h:commandLink value="page3" action="#{spa.set('page3')}" /></li>
+						</ul>
+					</f:ajax>
+				</h:form>
+			</nav>
+		</aside>
+		<article jsf:id="content" data-page="#{spa.page}">
+			<ui:include src="/WEB-INF/includes/spa/#{spa.page}.xhtml" />
+		</article>
+	</ui:define>
+</ui:composition>

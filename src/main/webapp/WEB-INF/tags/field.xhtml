@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf "
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+>
+	<div class="field" jsf:rendered="#{rendered ne false}">
+		<ui:insert name="beforeLabel" />
+
+		<ui:insert name="label">
+			<h:outputLabel id="#{id}_l" for="#{id}" value="#{label}">
+				<span><ui:insert name="insideLabel" /></span>
+			</h:outputLabel>
+		</ui:insert>
+
+		<ui:insert name="beforeInput" />
+
+		<ui:insert name="input">
+			<c:choose>
+				<c:when test="#{type eq 'password'}">
+					<h:inputSecret id="#{id}" label="#{label}" value="#{value}">
+						<ui:insert />
+					</h:inputSecret>
+				</c:when>
+				<c:when test="#{type eq 'textarea'}">
+					<h:inputTextarea id="#{id}" label="#{label}" value="#{value}">
+						<ui:insert />
+					</h:inputTextarea>
+				</c:when>
+
+				<!-- More types can be added as c:when here -->
+
+				<c:otherwise>
+					<h:inputText id="#{id}" a:type="#{type}" label="#{label}" value="#{value}">
+						<ui:insert />
+					</h:inputText>
+				</c:otherwise>
+			</c:choose>
+		</ui:insert>
+
+		<ui:insert name="beforeMessages" />
+
+		<ui:insert name="messages">
+			<h:messages id="#{id}_m" for="#{id}" styleClass="messages" />
+		</ui:insert>
+	</div>
+</ui:composition>
