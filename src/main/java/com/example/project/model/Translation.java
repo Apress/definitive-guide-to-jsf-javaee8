@@ -21,7 +21,7 @@ public class Translation extends BaseEntity {
 	@Column(length = LOCALE_MAXLENGTH, nullable = false)
 	private @NotNull Locale locale;
 
-	@Column(length = KEY_MAXLENGTH, nullable = false)
+	@Column(length = KEY_MAXLENGTH, nullable = false, name="\"key\"")
 	private @NotNull String key;
 
 	@Lob
